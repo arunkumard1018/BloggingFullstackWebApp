@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function FooterComponent() {
     return (
@@ -16,19 +17,19 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-gray-800 text-white  absolute w-[100%] bottom-0 pt-3">
+        <footer className="bg-gray-900 text-white pt-3">
             <div className="container mx-auto flex flex-col items-center">
 
                 <div className="mb-4">
-                    <a href="/" className="text-gray-300 hover:text-white mr-4">
+                    <Link to="/" className="text-gray-300 hover:text-white mr-4">
                         <span className="fab fa-twitter"> twitter</span>
-                    </a>
-                    <a href="/" className="text-gray-300 hover:text-white mr-4">
+                    </Link>
+                    <Link to="/" className="text-gray-300 hover:text-white mr-4">
                         <span className="fab fa-facebook">facebook</span>
-                    </a>
-                    <a href="/" className="text-gray-300 hover:text-white">
+                    </Link>
+                    <Link to="/" className="text-gray-300 hover:text-white">
                         <span className="fab fa-instagram">instagram</span>
-                    </a>
+                    </Link>
                 </div>
 
                 <form onSubmit={handleSubscribe} className="mb-4">
