@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import BlogPost from './BlogPost';
 import { blogPosts } from '../api/BlogPostServiceApi';
 

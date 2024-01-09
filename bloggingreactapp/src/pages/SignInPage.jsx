@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const SignInPage = () => {
@@ -31,7 +32,7 @@ const SignInPage = () => {
 
                 {/* Forgot Password Link */}
                 <div className="mb-6 text-right">
-                    <a href="/" className="text-blue-500 hover:underline">Forgot Password?</a>
+                    <Link to="/" className="text-blue-500 hover:underline">Forgot Password?</Link>
                 </div>
 
                 {/* Sign In Button */}
@@ -44,7 +45,7 @@ const SignInPage = () => {
 
                 {/* Sign Up Link */}
                 <div className="mt-4 text-center">
-                    <p className="text-gray-600">Don't have an account? <a href="/" className="text-blue-500 hover:underline">Sign Up</a></p>
+                    <p className="text-gray-600">Don't have an account? <Link to="/" className="text-blue-500 hover:underline">Sign Up</Link></p>
                 </div>
             </div>
         </div>
