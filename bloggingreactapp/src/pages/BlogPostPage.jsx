@@ -18,7 +18,7 @@ const BlogDetailPage = () => {
     const { postId } = useParams()
     const currentBlog = findPostById(parseInt(postId))
 
-    const otherBlogs = blogPosts.slice(0, 5);
+    const otherBlogs = blogPosts;
 
     return (
         <div className="mt-[4rem] md:mx-[250px] mx-4">
@@ -36,13 +36,13 @@ const BlogDetailPage = () => {
 
             <main className="mx-auto">
                 <div className="bg-white  rounded-lg">
-                    <img src={image} alt={currentBlog.title} className="mb-4 rounded-lg md:h-[300px] md:w-[300px] h-[200px] w-[200px]" />
+                    <img src={image} alt={currentBlog.title} className="mb-4 rounded-lg md:h-[300px] md:w-[300px] h-[200px] w-[200px] lg:h-[400px] lg:w-[400px]" />
                     <p className="text-gray-800">{currentBlog.description}</p>
                 </div>
                 {/* Other Blog Recommendations */}
                 <div className="mt-8">
                     <h2 className="text-2xl font-semibold mb-4">Other Blog Recommendations</h2>
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                    <div className="grid grid-rows-1 grid-cols-2 md:grid-cols-4  lg:grid-cols-6 gap-2">
                         {otherBlogs.map((blog) => (
                             <OtherPostRecomendetions blog={blog} />
                         ))}
@@ -57,9 +57,9 @@ const BlogDetailPage = () => {
 export const OtherPostRecomendetions = ({ blog }) => {
     return (
         <Link to={`/posts/${blog.id}`}>
-            <div key={blog.id} className="bg-white p-4 rounded-lg ">
-                <img src={image} alt={blog.title} className="mb-4 rounded-lg h-[180px]" />
-                <h3 className="text-md font-semibold mb-2">{blog.title}</h3>
+            <div key={blog.id} className="bg-white p-4 rounded-lg flex flex-col justify-center">
+                <img src={image} alt={blog.title} className="mb-4 rounded-lg h-[180px] w-[100%]" />
+                <h3 className="text-md font-semibold mb-2 ">{blog.title}</h3>
                 <p >{blog.subheading}</p>
                 {/* You can add more details or links to these recommended blogs */}
             </div>
