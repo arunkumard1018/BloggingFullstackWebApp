@@ -1,6 +1,7 @@
 BloggingWebAp
 ------
-Personal Blogging Application  using React as a User Interface and spring-boot as a backend-Rest full services
+Personal Blogging Application  using React as a User Interface and spring-boot as a backend-Rest full services  
+
 **Technologies Used:**
 -------
 __HTML, CSS,React__: to Build the user interface  
