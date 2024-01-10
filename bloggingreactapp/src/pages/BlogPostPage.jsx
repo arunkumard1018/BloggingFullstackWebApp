@@ -1,5 +1,5 @@
-import React from 'react'
-import image from '../assets/images/sample-image.jpg'
+import React from 'react';
+import image from '../assets/images/sample-image.jpg';
 import { blogPosts, findPostById } from '../api/BlogPostServiceApi';
 import { Link, useParams } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ const BlogDetailPage = () => {
     const { postId } = useParams()
     const currentBlog = findPostById(parseInt(postId))
 
-    const otherBlogs = blogPosts;
+    const otherBlogs = blogPosts.slice(0,6);
 
     return (
         <div className="mt-[4rem] md:mx-[250px] mx-4">
@@ -33,7 +33,6 @@ const BlogDetailPage = () => {
                     </div>
                 </div>
             </header>
-
             <main className="mx-auto">
                 <div className="bg-white  rounded-lg">
                     <img src={image} alt={currentBlog.title} className="mb-4 rounded-lg md:h-[300px] md:w-[300px] h-[200px] w-[200px] lg:h-[400px] lg:w-[400px]" />

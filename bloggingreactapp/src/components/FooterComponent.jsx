@@ -12,7 +12,6 @@ export default function FooterComponent() {
 const Footer = () => {
     const handleSubscribe = (e) => {
         e.preventDefault();
-        // Implement your subscribe logic here
         console.log('Subscribed!');
     };
 

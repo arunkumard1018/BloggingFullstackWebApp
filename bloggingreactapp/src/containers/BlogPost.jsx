@@ -22,7 +22,7 @@ const Post = ({ post }) => {
                 <div className="mb-4 flex space-x-3">
                     <img src={image} alt={post.author.name} className="w-10 h-10 rounded-full mb-2" />
                     <div><p className="text-gray-600 text-left">{post.author.name}</p>
-                        <p className="text-gray-500">{post.id} | {post.date}</p></div>
+                        <p className="text-gray-500">{post.date}</p></div>
                 </div>
                 <img src={image} alt={post.title} className="mb-4 rounded-lg h-[300px] md:h-[200px] lg:h-[300px] w-[100%]" />
                 <h2 className="text-xl font-semibold mb-2">{post.title}</h2>

@@ -1,10 +1,13 @@
+import twitter from '../assets/icons/twitter.svg';
+import facebook from '../assets/icons/facebook.svg';
+import Google from '../assets/icons/Google.png';
 
 
 const RegistrationPage = () => {
     return (
         <div className="flex items-center justify-center mt-20 md:mt-9 md:h-screen">
             <div className="bg-white p-8 rounded-lg shadow-sm w-full max-w-md">
-                <h2 className="text-2xl font-semibold mb-6 text-center">Sign Up</h2>
+                <h2 className="text-2xl font-semibold mb-6 text-center">Create an Account</h2>
 
                 {/* Name Field */}
                 <div className="mb-4">
@@ -53,22 +56,6 @@ const RegistrationPage = () => {
                     />
                 </div>
 
-                {/* Sign Up with Social Media Buttons */}
-                <div className="mb-4">
-                    <p className="text-gray-600 text-center mb-2">Sign up with:</p>
-                    <div className="flex justify-center space-x-4">
-                        <button className="bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600 focus:outline-none">
-                            Google
-                        </button>
-                        <button className="bg-blue-700 text-white rounded-md py-2 px-4 hover:bg-blue-800 focus:outline-none">
-                            Facebook
-                        </button>
-                        <button className="bg-blue-400 text-white rounded-md py-2 px-4 hover:bg-blue-500 focus:outline-none">
-                            Twitter
-                        </button>
-                    </div>
-                </div>
-
                 {/* Sign Up Button */}
                 <button
                     className="w-full bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600 focus:outline-none"
@@ -76,6 +63,25 @@ const RegistrationPage = () => {
                 >
                     Sign Up
                 </button>
+
+                {/* Sign Up with Social Media Buttons */}
+                <div className="mb-4">
+                    <p className="text-gray-600 text-center mb-2">or Sign up with:</p>
+                    <div className="flex justify-center space-x-4">
+                        <button className="bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600 focus:outline-none flex items-center">
+                            <img className='rounded-full mr-1 w-5' src={Google} alt="twit" />
+                            Google
+                        </button>
+                        <button className="bg-blue-700 text-white rounded-md py-2 px-4 hover:bg-blue-800 focus:outline-none flex items-center">
+                            <img className='invert mr-1' src={facebook} alt="twit" />
+                            Facebook
+                        </button>
+                        <button className="bg-blue-400 text-white rounded-md py-2 px-4 hover:bg-blue-500 focus:outline-none flex items-center">
+                            <img className='invert mr-1' src={twitter} alt="twit" />
+                            Twitter
+                        </button>
+                    </div>
+                </div>
 
                 {/* Sign In Link */}
                 <div className="mt-4 text-center">
