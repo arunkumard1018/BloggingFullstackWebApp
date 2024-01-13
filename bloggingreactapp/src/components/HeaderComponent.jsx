@@ -23,6 +23,11 @@ const Navbar = () => {
         setisMobileMenuOpen(!isMobileMenuOpen);
     };
 
+    const logout= () => {
+        authContext.logout();
+        setisMobileMenuOpen(!isMobileMenuOpen);
+    }
+
     return (
         <div className="NavBar bg-white  fixed top-0 z-10 w-[100%]">
             <nav className="bg-white border-b border-black py-5">
@@ -40,7 +45,7 @@ const Navbar = () => {
                         />
                         {isAuthenticated && <Link to="/" className="text-black hover:underline">Our Story</Link>}
                         {isAuthenticated && <Link to="/" className="text-black hover:underline">MemberShip</Link>}
-                        {isAuthenticated && <Link to="/" className="text-black hover:underline">write</Link>}
+                        {isAuthenticated && <Link to="/post" className="text-black hover:underline">write</Link>}
                         {!isAuthenticated && <Link to="/login" className="text-black hover:underline" id="signin-btn">Sign in</Link>}
                         {isAuthenticated && <Link to="/logout" onClick={() => authContext.logout()} className="text-black flex items-center hover:bg-slate-200 p-2 rounded-full" id="signin-btn">Sign Out <img className='w-4 ml-1' src={signoutIcon} alt="logout" /></Link>}
                         {!isAuthenticated && <Link to="/register"><button
@@ -56,10 +61,10 @@ const Navbar = () => {
                 (
                     <div id="mobile-menu" className="md:hidden bg-white p-4 space-y-2 flex flex-col items-start">
                         {isAuthenticated && <Link to="/" onClick={() => setisMobileMenuOpen(!isMobileMenuOpen)} className="text-black hover:underline mx-3">MemberShip</Link>}
-                        {isAuthenticated && <Link to="/" onClick={() => setisMobileMenuOpen(!isMobileMenuOpen)} className="text-black hover:underline mx-3">write</Link>}
+                        {isAuthenticated && <Link to="/post" onClick={() => setisMobileMenuOpen(!isMobileMenuOpen)} className="text-black hover:underline mx-3">write</Link>}
                         {isAuthenticated && <Link to="/" onClick={() => setisMobileMenuOpen(!isMobileMenuOpen)} className="text-black hover:underline mx-3">Our Story</Link>}
-                        {isAuthenticated && <Link to="/" onClick={() => setisMobileMenuOpen(!isMobileMenuOpen)} className="text-black hover:underline mx-3 pt-2">Sign Out</Link>}
-                        {!isAuthenticated && <Link to="/logout" onClick={() => authContext.logout()} className="text-black hover:underline mx-3" id="signin-btn">Sign in</Link>}
+                        {isAuthenticated && <Link to="/logout" onClick={logout} className="text-black hover:underline mx-3 pt-2">Sign Out</Link>}
+                        {!isAuthenticated && <Link to="/login" onClick={() => setisMobileMenuOpen(!isMobileMenuOpen)}  className="text-black hover:underline mx-3" id="signin-btn">Sign in</Link>}
                         {!isAuthenticated && <Link to="/register"><button onClick={() => setisMobileMenuOpen(!isMobileMenuOpen)}
                             className="bg-green-500 px-5 py-2 rounded-full hover:bg-green-600 text-white">Register</button></Link>}
                     </div>

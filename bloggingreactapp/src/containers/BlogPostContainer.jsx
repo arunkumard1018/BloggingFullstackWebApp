@@ -1,5 +1,5 @@
 import React from 'react'
-import BlogPost from './BlogPost';
+import BlogPostList from './BlogPostList';
 import { blogPosts } from '../api/BlogPostServiceApi';
 
 function BlogPostContainer() {
@@ -7,7 +7,7 @@ function BlogPostContainer() {
     return (
         <div className=" min-h-screen mt-[6rem] md:mx-[230px] ">
             <main className="container mx-auto">
-                <BlogPost blogPosts={blogPosts} />
+                <BlogPostList blogPosts={blogPosts} />
             </main>
         </div>
     )

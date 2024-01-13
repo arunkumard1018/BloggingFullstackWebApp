@@ -7,6 +7,8 @@ import RegistrationPage from './pages/RegistrationPage';
 import BlogPostPage from './pages/BlogPostPage';
 import FooterComponent from './components/FooterComponent';
 import AuthProvider from './security/AuthContext';
+import LogoutComponent from './components/LogoutComponent';
+import BlogPost from './components/BlogPost';
 
 
 
@@ -20,9 +22,10 @@ function App() {
           <Routes>
             <Route path='/' element={<BlogPostContainer />} />
             <Route path='/login' element={<SignInPage />} />
-            <Route path='/logout' element={<Logout />} />
+            <Route path='/logout' element={<LogoutComponent />} />
             <Route path='/register' element={<RegistrationPage />} />
             <Route path='/posts/:postId' element={<BlogPostPage />} />
+            <Route path='/post' element={<BlogPost />} />
           </Routes>
 
           <FooterComponent />
@@ -32,15 +35,6 @@ function App() {
   );
 }
 
-function Logout() {
-  return (
-    <div className="LogoutComponent mt-[15rem] md:mx-[250px] mx-4 text-center mb-[36.1vh]">
-      <h1>You are logged out!</h1>
-      <div>
-        Thank you for using our App. Come back soon!
-      </div>
-    </div>
-  )
-}
+
 
 export default App;
