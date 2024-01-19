@@ -52,7 +52,6 @@ const BlogDetailPage = () => {
     );
 };
 
-
 export const OtherPostRecomendetions = ({ blog }) => {
     return (
         <Link to={`/posts/${blog.id}`}>
