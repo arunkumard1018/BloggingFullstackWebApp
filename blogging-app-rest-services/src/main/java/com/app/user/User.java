@@ -2,12 +2,19 @@ package com.app.user;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Past;
+
 public class User {
 
 	private Integer id;
+	@Min(value = 3,message = "name should be atleast 3 characters long")
 	private String name;
+	@Email
 	private String email;
 	private String password;
+	@Past(message = "date of birth must be in past")
 	private LocalDate dob;
 	
 	public User(int id, String name, String email, String password, LocalDate dob) {

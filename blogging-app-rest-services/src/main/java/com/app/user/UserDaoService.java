@@ -24,8 +24,8 @@ public class UserDaoService {
 		return users;
 	}
 	
-	public User findById(int userId) {
-		Predicate<? super User> predicate = user -> user.getId().equals(userId);
+	public User findById(Integer id) {
+		Predicate<? super User> predicate = user -> user.getId().equals(id);
 		return users.stream().filter(predicate).findFirst().orElse(null);
 	}
 
@@ -33,6 +33,13 @@ public class UserDaoService {
 		user.setId(++id);
 		users.add(user);
 		return user;
+	}
+
+	public void deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		Predicate<? super User> predicate = user -> user.getId().equals(id);
+		users.removeIf(predicate);
+		
 	}
 
 }

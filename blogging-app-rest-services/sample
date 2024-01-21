@@ -1,0 +1,11 @@
+
+>>>>>>>>>>>>>>>>>>>>>>> To kill Process <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+PS C:\Users\User> netstat -ano | findstr "8080"
+  TCP    0.0.0.0:8080           0.0.0.0:0              LISTENING       11748
+  TCP    [::]:8080              [::]:0                 LISTENING       11748
+  
+PS C:\Users\User> taskkill /F /PID 11748
+SUCCESS: The process with PID 11748 has been terminated.
+==============================================================================
+
