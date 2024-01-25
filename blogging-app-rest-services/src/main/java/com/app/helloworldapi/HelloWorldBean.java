@@ -1,4 +1,4 @@
-package com.app.learning.helloworld;
+package com.app.helloworldapi;
 
 
 public class HelloWorldBean {

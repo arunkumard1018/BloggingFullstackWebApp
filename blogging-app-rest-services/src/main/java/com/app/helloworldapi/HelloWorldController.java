@@ -1,4 +1,4 @@
-package com.app.learning.helloworld;
+package com.app.helloworldapi;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
