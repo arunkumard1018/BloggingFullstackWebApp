@@ -1,44 +1,34 @@
 package com.app.user;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import com.app.jpa.UserRepositry;
 
 @Service
 public class UserDaoService {
 	
-	static List<User> users = new ArrayList<>();
-	static int  id= 110;
-	static {
-		users.add(new User(++id, "Arun", "arun@gmail.com", "Arun@password", LocalDate.now().minusYears(20)));
-		users.add(new User(++id, "Chirag", "Chirag@gmail.com", "Chirag@password", LocalDate.now().minusYears(21)));
-		users.add(new User(++id, "Manoj", "Manoj@gmail.com", "Manoj@password", LocalDate.now().minusYears(22)));
-		users.add(new User(++id, "Chandan", "Chandan@gmail.com", "Chandan@password", LocalDate.now().minusYears(23)));
-
+	private UserRepositry userRepositry;
+	
+	public UserDaoService(UserRepositry userRepositry) {
+		super();
+		this.userRepositry = userRepositry;
 	}
 	
 	public List<User> findAll(){
-		return users;
+		return userRepositry.findAll();
 	}
 	
-	public User findById(Integer id) {
-		Predicate<? super User> predicate = user -> user.getId().equals(id);
-		return users.stream().filter(predicate).findFirst().orElse(null);
+	public Optional<User> findById(Integer id) {
+		return userRepositry.findById(id);
 	}
 
 	public User save(User user) {
-		user.setId(++id);
-		users.add(user);
-		return user;
+		return userRepositry.save(user);
 	}
 
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		Predicate<? super User> predicate = user -> user.getId().equals(id);
-		users.removeIf(predicate);
+		userRepositry.deleteById(id);
 		
 	}
 

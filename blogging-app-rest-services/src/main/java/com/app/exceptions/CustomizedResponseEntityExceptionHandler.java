@@ -19,30 +19,37 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ErrorDetails> handleAllExceptions(Exception ex, WebRequest request) throws Exception {
-		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(),
-				ex.getMessage(),request.getDescription(false));
-		
+		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(),
+				request.getDescription(false));
+
 		return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
-	
+
 	@ExceptionHandler(UserNotFoundException.class)
-	public final ResponseEntity<ErrorDetails> handleUserNotFoundException(Exception ex, WebRequest request) throws Exception {
-		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(),
-				ex.getMessage(),request.getDescription(false));
+	public final ResponseEntity<ErrorDetails> handleUserNotFoundException(Exception ex, WebRequest request)
+			throws Exception {
+		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(),
+				request.getDescription(false));
 		return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@Override
-	protected ResponseEntity<Object> handleMethodArgumentNotValid(
-			MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-		String errorMessage  = "Total Errors : " + ex.getErrorCount() + " and the Error Details : -> ";
+	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+		String errorMessage = "Total Errors : " + ex.getErrorCount() + " and the Error Details : -> ";
 		for (FieldError error : ex.getFieldErrors()) {
-			errorMessage += error.getDefaultMessage() +" and ";
+			errorMessage += error.getDefaultMessage() + " and ";
 		}
-		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(),
-				errorMessage,request.getDescription(false));
-		
+		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), errorMessage, request.getDescription(false));
+
 		return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(PostNotFoundException.class)
+	public final ResponseEntity<ErrorDetails> handlePostNotFoundException(Exception ex, WebRequest request)
+			throws Exception {
+		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(),
+				request.getDescription(false));
+		return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
 	}
 }
