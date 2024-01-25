@@ -10,8 +10,8 @@ Java spring Boot is used to create rest api
 
 Image Snap shot of Application Home Page in Desktop :
 ------
-![app_snap_shot](https://github.com/arunkumard1018/BloggingWebApp/blob/main/images/img-3-desktop-screen.jpg?raw=true)
+![app_snap_shot](https://github.com/arunkumard1018/BloggingFullstackWebApp/blob/main/images/img-3-desktop-screen.jpg?raw=true)
 
 Image Snap shot of Application Home Page in Mobile View :
 ------
-![app_snap_shot](https://github.com/arunkumard1018/BloggingWebApp/blob/main/images/MobileScreen-img.jpeg?raw=true)
+![app_snap_shot](https://github.com/arunkumard1018/BloggingFullstackWebApp/blob/main/images/MobileScreen-img.jpeg?raw=true)
