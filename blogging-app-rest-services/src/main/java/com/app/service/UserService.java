@@ -1,29 +1,30 @@
-package com.app.user;
+package com.app.service;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import com.app.jpa.UserRepositry;
+import com.app.model.UserDetails;
 
 @Service
-public class UserDaoService {
+public class UserService {
 	
 	private UserRepositry userRepositry;
 	
-	public UserDaoService(UserRepositry userRepositry) {
+	public UserService(UserRepositry userRepositry) {
 		super();
 		this.userRepositry = userRepositry;
 	}
 	
-	public List<User> findAll(){
+	public List<UserDetails> findAll(){
 		return userRepositry.findAll();
 	}
 	
-	public Optional<User> findById(Integer id) {
+	public Optional<UserDetails> findById(Integer id) {
 		return userRepositry.findById(id);
 	}
 
-	public User save(User user) {
+	public UserDetails save(UserDetails user) {
 		return userRepositry.save(user);
 	}
 

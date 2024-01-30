@@ -19,14 +19,14 @@ public class HelloWorldController {
 		return new HelloWorldBean("Aruna");
 	}
 	
-	/** 
-	 * understanding path parameters
-	 *  example : /users/{userId}/todos/{todoId}  => /users/222/todos/5
-	 *  
-	 * */
-	@GetMapping(path = "/hello-world/path-variable/{name}")
+
+	@GetMapping(path = "/hello-world/{name}")
 	public HelloWorldBean helloWorldUser(@PathVariable String name) {
 		return new HelloWorldBean("Hello  " + name);
+	}
+	@GetMapping(path = "/hello-world/")
+	public HelloWorldBean helloWorldUser() {
+		return new HelloWorldBean("Enter Your Name And Call the Api");
 	}
 	
 	@GetMapping(path = "/")

@@ -1,4 +1,4 @@
-package com.app.post;
+package com.app.controllers;
 
 import java.net.URI;
 import java.util.List;
@@ -14,14 +14,19 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.app.exceptions.PostNotFoundException;
 import com.app.exceptions.UserNotFoundException;
-import com.app.user.User;
-import com.app.user.UserDaoService;
+import com.app.model.Comment;
+import com.app.model.Post;
+import com.app.model.UserDetails;
+import com.app.service.CommentService;
+import com.app.service.PostService;
+import com.app.service.UserService;
 
 @RestController
-public class PostResource {
-	private UserDaoService userService;
-	private PostDaoService postService;
-	public PostResource(UserDaoService userService, PostDaoService postService) {
+public class PostResourceController {
+	private UserService userService;
+	private PostService postService;
+	
+	public PostResourceController(UserService userService, PostService postService) {
 		super();
 		this.userService = userService;
 		this.postService = postService;
@@ -34,7 +39,7 @@ public class PostResource {
 	
 	@GetMapping(path = "/users/{id}/posts")
 	public List<Post> retriveAllPostsForUser(@PathVariable Integer id){
-		Optional<User> user = userService.findById(id);
+		Optional<UserDetails> user = userService.findById(id);
 		if (user.isEmpty()) {
 			throw new UserNotFoundException("id: " + id);
 		}
@@ -43,14 +48,14 @@ public class PostResource {
 	
 	@PostMapping(path = "/users/{id}/posts")
 	public ResponseEntity<Post> CreatePost(@PathVariable Integer id, @RequestBody Post post) {
-		Optional<User> user = userService.findById(id);
+		Optional<UserDetails> user = userService.findById(id);
 		if (user.isEmpty()) {
 			throw new UserNotFoundException("id: " + id);
 		}
 		post.setUser(user.get());
 		Post savedPost = postService.savePost(post);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}")
+				.path("/{post_id}")
 				.buildAndExpand(savedPost.getId())
 				.toUri();
 		return ResponseEntity.created(location).build();
@@ -58,7 +63,7 @@ public class PostResource {
 	
 	@GetMapping(path = "/users/{id}/posts/{postId}")
 	public Post retrivePostForUser(@PathVariable Integer id, @PathVariable Integer postId){
-		Optional<User> user = userService.findById(id);
+		Optional<UserDetails> user = userService.findById(id);
 		if (user.isEmpty()) {
 			throw new UserNotFoundException("id : " + id);
 		}
@@ -77,6 +82,7 @@ public class PostResource {
 		}
 		return post.get();
 	}
+	
 	
 
 }

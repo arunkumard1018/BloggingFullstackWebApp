@@ -1,4 +1,4 @@
-package com.app.user;
+package com.app.controllers;
 
 import java.net.URI;
 import java.util.List;
@@ -14,27 +14,29 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.app.exceptions.UserNotFoundException;
+import com.app.model.UserDetails;
+import com.app.service.UserService;
 
 import jakarta.validation.Valid;
 
 @RestController
-public class UserResource {
+public class UsersResourceController {
 
-	private UserDaoService userService;
+	private UserService userService;
 
-	public UserResource(UserDaoService userService) {
+	public UsersResourceController(UserService userService) {
 		super();
 		this.userService = userService;
 	}
 
 	@GetMapping(path = "/users")
-	public List<User> retriveAllUsers() {
+	public List<UserDetails> retriveAllUsers() {
 		return userService.findAll();
 	}
 
 	@GetMapping(path = "/users/{id}")
-	public User retriveUser(@PathVariable Integer id) {
-		Optional<User> user = userService.findById(id);
+	public UserDetails retriveUser(@PathVariable Integer id) {
+		Optional<UserDetails> user = userService.findById(id);
 		if (user.isEmpty()) {
 			throw new UserNotFoundException("id: " + id);
 		} else {
@@ -44,7 +46,7 @@ public class UserResource {
 
 	@DeleteMapping(path = "/users/{id}")
 	public void deleteUser(@PathVariable Integer id) {
-		Optional<User> user = userService.findById(id);
+		Optional<UserDetails> user = userService.findById(id);
 		if (user.isEmpty()) {
 			throw new UserNotFoundException("id: " + id);
 		} else {
@@ -53,8 +55,8 @@ public class UserResource {
 	}
 
 	@PostMapping(path = "/users")
-	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
-		User savedUser = userService.save(user);
+	public ResponseEntity<UserDetails> createUser(@Valid @RequestBody UserDetails user) {
+		UserDetails savedUser = userService.save(user);
 
 		/**
 		 * getting current uri => path ServletUriComponentsBuilder.fromCurrentRequest()

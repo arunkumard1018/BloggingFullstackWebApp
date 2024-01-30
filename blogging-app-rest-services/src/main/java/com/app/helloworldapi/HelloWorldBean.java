@@ -3,19 +3,19 @@ package com.app.helloworldapi;
 
 public class HelloWorldBean {
 
-	private String name;
+	private String message;
 	
-	public HelloWorldBean(String name) {
+	public HelloWorldBean(String message) {
 		super();
-		this.name = name;
+		this.message = message;
 	}
 
 	public String getName() {
-		return name;
+		return message;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.message = name;
 	}
 	
 }
