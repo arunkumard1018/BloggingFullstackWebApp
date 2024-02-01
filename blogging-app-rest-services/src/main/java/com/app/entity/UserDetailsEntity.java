@@ -1,31 +1,43 @@
 package com.app.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "user_details")
 public class UserDetailsEntity {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne
-	@MapsId
-	@JoinColumn(name = "id")
-	private UserEntity user;
 	
 	private String name;
 	private LocalDate dob;
 	private String Gender;
 	private Long phone;
+	private String userProfileImageUrl;
 	private String facebookLink;
 	private String twitterLink;
 	private String instagramLink;
+	
+	@OneToMany(mappedBy = "userDetails",fetch = FetchType.LAZY,cascade =CascadeType.REMOVE )
+	@JsonIgnore
+	private List<PostEntity> posts;
+	
 
 	public UserDetailsEntity() {
 		super();
@@ -39,13 +51,6 @@ public class UserDetailsEntity {
 		this.id = id;
 	}
 
-	public UserEntity getUser() {
-		return user;
-	}
-
-	public void setUser(UserEntity user) {
-		this.user = user;
-	}
 
 	public String getName() {
 		return name;
@@ -102,6 +107,23 @@ public class UserDetailsEntity {
 	public void setInstagramLink(String instagramLink) {
 		this.instagramLink = instagramLink;
 	}
+
+	public String getUserProfileImageUrl() {
+		return userProfileImageUrl;
+	}
+
+	public void setUserProfileImageUrl(String userProfileImageUrl) {
+		this.userProfileImageUrl = userProfileImageUrl;
+	}
+
+	public List<PostEntity> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<PostEntity> posts) {
+		this.posts = posts;
+	}
+
 	
 	
 	

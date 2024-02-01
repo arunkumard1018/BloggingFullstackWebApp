@@ -1,47 +1,51 @@
 package com.app.model;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalTime;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-
-@Entity(name = "post_details")
 public class Post {
-	@Id
-	@GeneratedValue
-	private Integer id;
+	
+	private Long id;
 	
 	private String title;
+	
 	private String description;
-	@Column(columnDefinition = "TEXT")
+	
 	private String paragraph;
-	private LocalDate date;
+	
 	private String imageUrl;
 	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
-	private UserDetails userDetails;
+	private LocalDate date;
 	
-	@OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonIgnore
-	private List<Comment> comments;
+	private LocalTime time;
 	
+	private Author author;
+	
+	
+	
+
+	
+	public Post(Long id, String title, String description, String paragraph, String imageUrl, LocalDate date,
+			LocalTime time, Author author) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.paragraph = paragraph;
+		this.imageUrl = imageUrl;
+		this.date = date;
+		this.time = time;
+		this.author = author;
+	}
+	
+
 	public Post() {
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -85,20 +89,22 @@ public class Post {
 		this.imageUrl = imageUrl;
 	}
 
-	public UserDetails getUser() {
-		return userDetails;
+	public LocalTime getTime() {
+		return time;
 	}
 
-	public void setUser(UserDetails userDetails) {
-		this.userDetails = userDetails;
+	public void setTime(LocalTime time) {
+		this.time = time;
 	}
 
-	public List<Comment> getComments() {
-		return comments;
+	public Author getAuthor() {
+		return author;
 	}
 
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
+	public void setAuthor(Author author) {
+		this.author = author;
 	}
+	
+
 	
 }

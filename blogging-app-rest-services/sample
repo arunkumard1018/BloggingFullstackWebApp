@@ -16,3 +16,33 @@ static {
 		users.add(new User(++id, "Chandan", "Chandan@gmail.com", "Chandan@password", LocalDate.now().minusYears(23)));
 
 	}
+	
+	
+	
+	@GetMapping("/secured-endpoint")
+//	public String getSecuredData() {
+//		// Get the Authentication object from the SecurityContextHolder
+////		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//		org.springframework.security.core.Authentication principal = SecurityContextHolder.getContext().getAuthentication();
+//
+//		System.out.println(principal);
+//		// Check if the user is authenticated
+////		if (authentication.isAuthenticated()) {
+////			// Access the authenticated user's username
+////			String username = authentication.getName();
+////
+////			// Now you can use the username in your logic
+////			return "Hello, " + username + "! This is a secured endpoint.";
+////		} else {
+////			return "Not authenticated";
+////		}
+//		return "getSecuredData";
+//	}
+
+
+Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String userName = authService.retriveEmailForId(id);
+		
+		if(authentication.isAuthenticated() && authentication.getName().equals(userName)) {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+		}
