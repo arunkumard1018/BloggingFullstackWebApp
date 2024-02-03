@@ -1,6 +1,7 @@
 package com.app.controllers;
 
 import java.net.URI;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -10,12 +11,10 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.app.entity.PostEntity;
 import com.app.entity.UserDetailsEntity;
@@ -80,6 +79,16 @@ public class PostResourceController {
 			throw new PostNotFoundException("postId : " + id);
 		}
 		return PostConverter.convertToPostDTO(post.get());
+	}
+	public String foo(@AuthenticationPrincipal User user) {
+		return user.getUsername();
+	}
+	@RequestMapping("/foo")
+	public String foo(Principal principal) {
+		Authentication authentication = (Authentication) principal;
+		User user = (User) authentication.getPrincipal();
+
+		return "hello";
 	}
 
 //	

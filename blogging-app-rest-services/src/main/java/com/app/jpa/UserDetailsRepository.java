@@ -8,5 +8,5 @@ import com.app.entity.UserDetailsEntity;
 import com.app.entity.UserEntity;
 
 public interface UserDetailsRepository extends JpaRepository<UserDetailsEntity, Long> {
-//	Optional<UserDetailsEntity> findByUserId(Long id);
+//	Optional<UserDetailsEntity> findByEmail(String email);
 }

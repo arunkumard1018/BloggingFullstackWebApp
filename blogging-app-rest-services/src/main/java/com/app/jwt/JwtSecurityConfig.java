@@ -55,7 +55,7 @@ public class JwtSecurityConfig {
         // https://github.com/spring-projects/spring-security/issues/12310
         return httpSecurity
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/authenticate").permitAll()
+                    .requestMatchers("/authenticate","/").permitAll() //#AWSChange
                     .requestMatchers("/register").permitAll()
                     .requestMatchers(HttpMethod.OPTIONS,"/**")
                     .permitAll()

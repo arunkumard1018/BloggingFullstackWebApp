@@ -58,8 +58,6 @@ public class UserEntity implements UserDetails{
 
 
 	public UserEntity() {
-		super();
-
 	}
 
 	public Long getId() {
