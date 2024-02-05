@@ -1,22 +1,22 @@
 package com.app.jpa;
 
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
 import com.app.entity.PostEntity;
-import com.app.model.Post;
 
 public interface PostRepository extends JpaRepository<PostEntity, Long>{
 
-	
-//	@Query("SELECT p FROM PostEntity p")
-//	List<PostEntity> findAllPosts();
-	
+	Page<PostEntity> findAllByOrderByDateDescTimeDesc(Pageable pageable);
+
 }
-//
+
+
+
+//@Query("SELECT p FROM PostEntity p")
+//List<PostEntity> findAllPosts();
+
 //@Query("SELECT new com.example.Post(p) FROM PostEntity p")
 //List<PostEntity> findAllPost();
 

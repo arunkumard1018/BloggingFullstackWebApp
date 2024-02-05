@@ -1,7 +1,7 @@
 package com.app.jwt;
 
+import java.time.Duration;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.Authentication;
@@ -31,7 +31,7 @@ public class JwtTokenService {
         var claims = JwtClaimsSet.builder()
                         .issuer("self")
                         .issuedAt(Instant.now())
-                        .expiresAt(Instant.now().plus(90, ChronoUnit.MINUTES))
+                        .expiresAt(Instant.now().plus(Duration.ofMinutes(90)))
                         .subject(authentication.getName())
                         .claim("scope", scope)
                         .build();

@@ -32,11 +32,6 @@ public class AuthController {
 		this.userDetailsSevice = userDetailsSevice;
 	}
 
-	@GetMapping(path = "/basicauth")
-	public String basicAuthToken() {
-		return "SUCCESS";
-	}
-
 	@PostMapping("/register")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody User user) {
 		Set<UserRole> roles = new HashSet<>(Arrays.asList(UserRole.ROLE_USER));

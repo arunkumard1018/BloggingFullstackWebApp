@@ -1,10 +1,17 @@
 package com.app.service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.app.exceptions.PostNotFoundException;
+import com.app.exceptions.UserNotFoundException;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +42,11 @@ public class PostService {
 		PostEntity postEntity = new PostEntity();
 		postEntity.setTitle(post.getTitle());
 		postEntity.setDescription(post.getDescription());
+		postEntity.setParagraph(post.getParagraph());
+		postEntity.setImageUrl(post.getImageUrl());
 		postEntity.setDate(LocalDate.now());
+		postEntity.setTime(LocalTime.now());
+		postEntity.setImageUrl(post.getImageUrl());
 		postEntity.setUserDetails(userDetails);
 		return postRepository.save(postEntity);
 	}
@@ -50,5 +61,22 @@ public class PostService {
 	public Optional<PostEntity> findById(Long id) {
 		return postRepository.findById(id);
 	}
+
+	public void deletePostById(Long id) {
+		postRepository.deleteById(id);
+	}
+
+	public void updatePost(Post post, PostEntity postEntity,UserDetailsEntity userDetails) {
+		postRepository.delete(postEntity);
+		savePost(post,userDetails);
+	}
+	
+	public Page<PostEntity> getRecentPosts(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<PostEntity> recentPosts = postRepository.findAllByOrderByDateDescTimeDesc(pageable);
+        return recentPosts;
+        
+    }
+	
 	
 }

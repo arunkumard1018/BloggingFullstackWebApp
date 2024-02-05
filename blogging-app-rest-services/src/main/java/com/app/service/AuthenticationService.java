@@ -3,15 +3,14 @@ package com.app.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.app.entity.UserDetailsEntity;
 import com.app.entity.UserEntity;
-import com.app.exceptions.UserNotFoundException;
 import com.app.jpa.UserRepository;
 import com.app.model.User;
 
@@ -40,25 +39,38 @@ public class AuthenticationService implements UserDetailsService{
 	public List<UserEntity> retriveRegisteredUsers() {
 		return userRepository.findAll();
 	}
+	
 	public Optional<UserEntity> retriveUsers(Long id) {
 		return userRepository.findById(id);
 	}
 	
-
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<UserEntity> user = userRepository.findByEmail(username);
 		if(user.isEmpty()) {
 			throw new UsernameNotFoundException("user Not Found :" + username);
 		}
-		
 		return user.get();
 	}
 	
 	public String retriveEmailForId(Long id) {
 		Optional<UserEntity> user =  userRepository.findById(id);
-		if(user.isEmpty()) throw new UserNotFoundException("Id :"+id);
+		if(user.isEmpty()) return null;
 		return user.get().getEmail();
 	}
-	
+
+    public Long getUserId(String username) {
+		Optional<UserEntity> user = userRepository.findByEmail(username);
+		if(user.isEmpty()) {
+			return null;
+		}
+		return user.get().getId();
+    }
+    public boolean isAuthenticatedUser(Long id) {
+        String username = retriveEmailForId(id);
+        String currentUser = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (currentUser == null) return false;
+        return username.equals(currentUser);
+    }
+
 }

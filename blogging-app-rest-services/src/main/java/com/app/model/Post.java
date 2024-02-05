@@ -3,6 +3,11 @@ package com.app.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Post {
 	
 	private Long id;
@@ -21,7 +26,8 @@ public class Post {
 	
 	private Author author;
 	
-	
+	@JsonIgnore
+	private MultipartFile file;
 	
 
 	
@@ -104,7 +110,17 @@ public class Post {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
-	
+
+
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	public MultipartFile getFile() {
+		return file;
+	}
+
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	
 }
