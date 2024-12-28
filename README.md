@@ -4,7 +4,7 @@ Personal Blogging Application  using React as a User Interface and spring-boot a
 
 **Technologies Used:**
 -------
-__HTML, CSS,React__: to Build the user interface  
+__HTML, CSS,React__: To Build the user interface  
 __Java, Spring-Boot ,Tailwind CSS__: Utilized the utility-first CSS framework to streamline styling and achieve a clean, modern design.  
 Java spring Boot is used to create rest api
 
