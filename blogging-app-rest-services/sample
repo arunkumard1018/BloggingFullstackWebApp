@@ -9,15 +9,6 @@ PS C:\Users\User> taskkill /F /PID 11748
 SUCCESS: The process with PID 11748 has been terminated.
 ==============================================================================
 
-static {
-		users.add(new User(++id, "Arun", "arun@gmail.com", "Arun@password", LocalDate.now().minusYears(20)));
-		users.add(new User(++id, "Chirag", "Chirag@gmail.com", "Chirag@password", LocalDate.now().minusYears(21)));
-		users.add(new User(++id, "Manoj", "Manoj@gmail.com", "Manoj@password", LocalDate.now().minusYears(22)));
-		users.add(new User(++id, "Chandan", "Chandan@gmail.com", "Chandan@password", LocalDate.now().minusYears(23)));
-
-	}
-	
-	
 	
 	@GetMapping("/secured-endpoint")
 //	public String getSecuredData() {
